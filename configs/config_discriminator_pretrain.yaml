@@ -1,0 +1,36 @@
+---
+src_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_generate_data/source_bpe_u8.txt.vocab.38831'
+dst_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_generate_data/target_bpe_u8.txt.vocab.34432'
+src_vocab_size: 38831
+dst_vocab_size: 34432
+hidden_units: 512
+scale_embedding: True
+attention_dropout_rate: 0.0
+residual_dropout_rate: 0.1
+num_blocks: 6
+num_heads: 8
+binding_embedding: False
+train:
+    logdir: '../experience/data_180w/dis_pretrain/model-180w_zh2en_bpe'
+    dis_src_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/source_bpe_u8.txt.vocab.38831.pkl' 
+    dis_dst_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/target_bpe_u8.txt.vocab.34432.pkl'
+    dis_max_epoches: 2
+    dis_dispFreq: 1
+    dis_saveFreq: 100
+    dis_devFreq: 100
+    dis_batch_size: 100
+    dis_saveto: '../experience/data_180w/dis_pretrain/model-180w_zh2en_bpe/dis_180w_bpe'
+    dis_reshuffle: True
+    dis_gpu_device: 'gpu-0-1-2-3-4-5-6-7'
+    dis_max_len: 50
+    dis_positive_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/target_bpe_u8.txt_lf_50_1011200'
+    dis_negative_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/negative_bpe_u8.txt'
+    dis_source_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/source_bpe_u8.txt_lf_50_1011200'
+    dis_dev_positive_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/dis_dev_positive_data'
+    dis_dev_negative_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/dis_dev_negative_data'
+    dis_dev_source_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_dis_pretrain/dis_dev_source_data'
+    dis_reload: True
+    dis_clip_c: 1.0
+    dis_dim_word: 512
+    dis_optimizer: 'rmsprop'
+    dis_scope: 'discnn'

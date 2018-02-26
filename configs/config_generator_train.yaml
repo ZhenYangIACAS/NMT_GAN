@@ -1,0 +1,38 @@
+---
+src_vocab: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/lf_50_for_generate_data/vocab.bpe.32000'
+dst_vocab: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/lf_50_for_generate_data/vocab.bpe.32000'
+src_vocab_size: 32000
+dst_vocab_size: 32000
+hidden_units: 512
+scale_embedding: True
+attention_dropout_rate: 0.0
+residual_dropout_rate: 0.1
+num_blocks: 6
+num_heads: 8
+binding_embedding: False
+train:
+    devices: '0,1'
+    src_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/450w_ende_data/train.tok.clean.bpe.32000.en'
+    dst_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/450w_ende_data/train.tok.clean.bpe.32000.en'
+    tokens_per_batch:  25000
+    max_length: 50
+    num_epochs: 500
+    logdir: 'model3'
+    save_freq: 1000
+    summary_freq: 100
+    grads_clip: 5
+    optimizer: 'adam_decay'
+    learning_rate: 0.00005
+    learning_rate_warmup_steps: 4000
+    label_smoothing: 0.1
+    batch_size: 256
+test:
+    src_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/lf_50_for_gan_train/bleuTest/newstest2013/newstest2013.tok.bpe.32000.en'
+    dst_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/lf_50_for_gan_train/bleuTest/newstest2013/newstest2013.tok.bpe.32000.de'
+    ori_dst_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/lf_50_for_gan_train/bleuTest/newstest2013/newstest2013.tok.de'
+    output_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/lf_50_for_gan_train/bleuTest/newstest2013/newstest2013.tok.de.output'
+    batch_size: 256
+    max_target_length: 200
+    beam_size: 4
+    lp_alpha: 0.6
+    devices: '0,1'

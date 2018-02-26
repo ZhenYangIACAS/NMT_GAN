@@ -1,0 +1,82 @@
+---
+src_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/source_bpe_u8.txt.vocab.38831'
+dst_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/target_bpe_u8.txt.vocab.34432'
+src_vocab_size: 38831
+dst_vocab_size: 34432
+hidden_units: 512
+scale_embedding: True
+attention_dropout_rate: 0.0
+residual_dropout_rate: 0.1
+num_blocks: 6
+num_heads: 8
+binding_embedding: False
+gan_iter_num: 8888
+gan_gen_iter_num: 1
+gan_dis_iter_num: 1
+generate_num: 5000
+rollnum: 20
+bias_num: 0.6
+logdir: '../experience/data_180w/gan_train/model-180w_zh2en_bpe'
+
+train:
+    devices: '0'
+    src_path: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/source_bpe_u8.txt_lf_50_1011200'
+    dst_path: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/target_bpe_u8.txt_lf_50_1011200'
+    tokens_per_batch:  25000
+    max_length: 50
+    num_epochs: 500
+    logdir: 'gan.log'
+    save_freq: 1000
+    summary_freq: 100
+    grads_clip: 5
+    optimizer: 'adam_decay'
+    learning_rate: 0.00005
+    learning_rate_warmup_steps: 4000
+    label_smoothing: 0.1
+    batch_size: 250
+    shared_embedding: False
+
+generator:
+    src_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/source_bpe_u8.txt.vocab.38831'
+    dst_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/target_bpe_u8.txt.vocab.34432'
+    devices: '0'
+    src_path: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/source_bpe_u8.txt_lf_50_1011200'
+    dst_path: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/target_bpe_u8.txt_lf_50_1011200'
+    tokens_per_batch:  25000
+    max_length: 50
+    num_epochs: 500
+    logdir: 'gan.log'
+    save_freq: 1000
+    summary_freq: 100
+    grads_clip: 5
+    optimizer: 'rmsprop'
+    modelFile: '../experience/data_180w/gan_train/model-180w_zh2en_bpe/model_epoch_10_step_42000'
+    learning_rate: 0.00001
+    learning_rate_warmup_steps: 4000
+    label_smoothing: 0.1
+    batch_size: 100
+    teacher_forcing: True
+
+discriminator:
+    dis_src_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/source_bpe_u8.txt.vocab.38831.pkl'
+    dis_dst_vocab: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/target_bpe_u8.txt.vocab.34432.pkl'
+    dis_max_epoches: 888
+    dis_dispFreq: 1
+    dis_saveFreq: 100
+    dis_devFreq: 100
+    dis_batch_size: 40
+    dis_saveto: '../experience/data_180w/gan_train/model-180w_zh2en_bpe/dis_180w_bpe'
+    dis_reshuffle: True
+    dis_gpu_devices: 'gpu-1-2-3-4'
+    dis_max_len: 50
+    dis_positive_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/gan_dis_positive_data'
+    dis_negative_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/gan_dis_negative_data'
+    dis_source_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/gan_dis_source_data'
+    dis_dev_positive_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/dis_dev_positive_data'
+    dis_dev_negative_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/dis_dev_negative_data'
+    dis_dev_source_data: '/mnt/lustre/xushuang1/zy/zhyang/dl4mt/corpus/data_gan_180w_zxw/180w_bpe_lf_50_for_gan_train/dis_dev_source_data'
+    dis_reload: True
+    dis_clip_c: 1.0
+    dis_dim_word: 512
+    dis_optimizer: 'rmsprop'
+    dis_scope: 'discnn'
