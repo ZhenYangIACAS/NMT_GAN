@@ -1,0 +1,2 @@
+MT evaluation scorer began on 2017 Apr 21 at 17:05:47
+command line:  mteval-v11b.pl -s bleuTest/NIST03/.xml -r bleuTest/NIST03/.ref -t test.txt -b -d 2
