@@ -152,7 +152,7 @@ class DisCNN(object):
         print('num_filters_total is ', self.num_filters_total)
 
         if optimizer == 'adam':
-            self.ptimizer = tf.train.AdamOptimizer()
+            self.optimizer = tf.train.AdamOptimizer()
             print("using adam as the optimizer for the discriminator")
         elif optimizer == 'adadelta':
             self.optimizer = tf.train.AdadeltaOptimizer(learning_rate=1.,rho=0.95,epsilon=1e-6)
