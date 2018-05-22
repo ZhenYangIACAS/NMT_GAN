@@ -97,7 +97,7 @@ def gan_train(config):
                 ##sample_str=du.indices_to_words(y_sample_dealed, 'dst')
                 ##print(sample_str)
                 #
-                x_to_maxlen = extend_sentence_to_maxlen(x)
+                x_to_maxlen = extend_sentence_to_maxlen(x, config.generator.max_length)
                 logging.info("calculate the reward")
                 rewards = generator.get_reward(x=x,
                                                x_to_maxlen=x_to_maxlen,
