@@ -13,7 +13,7 @@ binding_embedding: False
 train:
     devices: '0,1'
     src_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/450w_ende_data/train.tok.clean.bpe.32000.en'
-    dst_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/450w_ende_data/train.tok.clean.bpe.32000.en'
+    dst_path: '/data/zhyang/dl4mt/corpus/data_450w_en_de/transformer/450w_ende_data/train.tok.clean.bpe.32000.de'
     tokens_per_batch:  25000
     max_length: 50
     num_epochs: 500
