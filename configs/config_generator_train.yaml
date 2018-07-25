@@ -24,6 +24,7 @@ train:
     optimizer: 'adam_decay'
     learning_rate: 0.00005
     learning_rate_warmup_steps: 4000
+    shared_embedding: False
     label_smoothing: 0.1
     batch_size: 256
 test:
